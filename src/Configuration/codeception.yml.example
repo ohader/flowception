@@ -1,0 +1,7 @@
+extensions:
+    enabled:
+        - Codeception\Extension\Flowception
+    config:
+        Codeception\Extension\Flowception:
+            rootPath: '.'
+            context: 'Development/Local'
