@@ -1,0 +1,22 @@
+{
+    "name": "oliverhader/flowception",
+    "description": "The Codeception extension for integrating TYPO3 Flow.",
+    "keywords": ["codeception", "extension", "typo3", "flow"],
+    "homepage": "https://github.com/ohader/flowception",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Oliver Hader",
+            "email": "oliver.hader@typo3.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "codeception/codeception": ">=2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "Codeception\\Extension\\": "src/"
+        }
+    }
+}
