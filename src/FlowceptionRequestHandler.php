@@ -26,21 +26,6 @@ class FlowceptionRequestHandler extends \TYPO3\Flow\Cli\CommandRequestHandler {
 	protected $bootstrap;
 
 	/**
-	 * @var \TYPO3\Flow\Cli\Request
-	 */
-	protected $cliRequest;
-
-	/**
-	 * @var \TYPO3\Flow\Cli\Response
-	 */
-	protected $cliResponse;
-
-	/**
-	 * @var array
-	 */
-	protected $command;
-
-	/**
 	 * Constructor
 	 *
 	 * @param \TYPO3\Flow\Core\Bootstrap $bootstrap
@@ -77,75 +62,6 @@ class FlowceptionRequestHandler extends \TYPO3\Flow\Cli\CommandRequestHandler {
 	public function handleRequest() {
 		$sequence = $this->bootstrap->buildRuntimeSequence();
 		$sequence->invoke($this->bootstrap);
-		#$this->deferAutoloading();
-	}
-
-	public function setCommand(array $command) {
-		$this->command = $command;
-	}
-
-	/**
-	 * Returns the currently processed request
-	 *
-	 * @return \TYPO3\Flow\Cli\Request
-	 */
-	public function getCliRequest() {
-		return $this->cliRequest;
-	}
-
-	/**
-	 * Returns the response corresponding to the currently handled request
-	 *
-	 * @return \TYPO3\Flow\Cli\Response
-	 */
-	public function getCliResponse() {
-		return $this->cliResponse;
-	}
-
-	/**
-	 * Allows to set the currently processed request.
-	 *
-	 * @param \TYPO3\Flow\Cli\Request $request
-	 * @see TYPO3\Flow\Cli\RequestBuilder::build()
-	 */
-	public function setCliRequest(\TYPO3\Flow\Cli\Request $request) {
-		$this->cliRequest = $request;
-	}
-
-	/**
-	 * Allows to set the currently processed response.
-	 *
-	 * @param \TYPO3\Flow\Cli\Response $response
-	 */
-	public function setCliResponse(\TYPO3\Flow\Cli\Response $response) {
-		$this->cliResponse = $response;
-	}
-
-	/**
-	 * Moves TYPO3 Flow's autoloader to the end of the SPL stack.
-	 *
-	 * @throws \TYPO3\Flow\Exception
-	 */
-	protected function deferAutoloading() {
-		$classLoader = $this->bootstrap->getEarlyInstance('TYPO3\Flow\Core\ClassLoader');
-		spl_autoload_unregister(array($classLoader, 'loadClass'));
-		spl_autoload_register(array($classLoader, 'loadClass'), TRUE, FALSE);
-	}
-
-	/**
-	 * @return \TYPO3\Flow\Cli\RequestBuilder
-	 * @throws \TYPO3\Flow\Exception
-	 */
-	protected function getRequestBuilder() {
-		return $this->bootstrap->getObjectManager()->get('TYPO3\\Flow\\Cli\\RequestBuilder');
-	}
-
-	/**
-	 * @return \TYPO3\Flow\Mvc\Dispatcher
-	 * @throws \TYPO3\Flow\Exception
-	 */
-	protected function getDispatcher() {
-		return $this->bootstrap->getObjectManager()->get('TYPO3\\Flow\\Mvc\\Dispatcher');
 	}
 
 }
