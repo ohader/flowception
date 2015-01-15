@@ -1,5 +1,5 @@
 <?php
-namespace Codeception\Extension;
+namespace Codeception\Module;
 
 /*                                                                        *
  * This script belongs to the TYPO3 Flow framework.                       *
@@ -77,14 +77,7 @@ class FlowceptionRequestHandler extends \TYPO3\Flow\Cli\CommandRequestHandler {
 	public function handleRequest() {
 		$sequence = $this->bootstrap->buildRuntimeSequence();
 		$sequence->invoke($this->bootstrap);
-
-		$this->setCliRequest($this->getRequestBuilder()->build($this->command));
-		$this->setCliResponse(new \TYPO3\Flow\Cli\Response());
-
-		$this->getDispatcher()->dispatch($this->cliRequest, $this->cliResponse);
-		$this->cliResponse->send();
-
-		$this->deferAutoloading();
+		#$this->deferAutoloading();
 	}
 
 	public function setCommand(array $command) {

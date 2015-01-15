@@ -1,7 +1,10 @@
-extensions:
+###
+# enables the Flowception module in your test suites
+#
+modules:
     enabled:
-        - Codeception\Extension\Flowception
+        - Codeception\Module\Flowception
     config:
-        Codeception\Extension\Flowception:
+        Codeception\Module\Flowception:
             rootPath: '.'
-            context: 'Development/Local'
+            context: 'Testing'
